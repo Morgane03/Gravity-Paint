@@ -12,6 +12,9 @@ public class HealthUI : MonoBehaviour
     [SerializeField]
     private int _updateDuration = 1;
 
+    [SerializeField]
+    private AnimationCurve _updateCurve;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +25,6 @@ public class HealthUI : MonoBehaviour
 
     public void UpdateHealthUI(int health)
     {
-        Debug.Log("Health: " + health);
         StartCoroutine(UpdateHealthSlider(health, _updateDuration));
     }
 
@@ -34,7 +36,7 @@ public class HealthUI : MonoBehaviour
         while (timer < duration)
         {
             timer += Time.deltaTime;
-            _healthSlider.value = Mathf.Lerp(startFillAmount, health, timer / duration);
+            _healthSlider.value = Mathf.Lerp(startFillAmount, health, _updateCurve.Evaluate(timer / duration));
             yield return null;
         }
     }

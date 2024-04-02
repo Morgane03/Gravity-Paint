@@ -869,7 +869,7 @@ RectTransform:
   m_GameObject: {fileID: 643171444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 4, z: 2}
+  m_LocalScale: {x: 2, y: 6, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 755413020}
@@ -6143,6 +6143,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthSlider: {fileID: 643171446}
   _updateDuration: 1
+  _updateCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.78690207
+      value: 0.8609443
+      inSlope: -1.5992861
+      outSlope: -1.5992861
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.0786655
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1429419456
 MonoBehaviour:
   m_ObjectHideFlags: 0
