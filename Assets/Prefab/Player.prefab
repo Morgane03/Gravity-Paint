@@ -13,9 +13,11 @@ GameObject:
   - component: {fileID: 8781061483211562405}
   - component: {fileID: 801212860894108333}
   - component: {fileID: 439086234545363528}
-  - component: {fileID: 7198840464658829729}
-  - component: {fileID: 5442651068270802988}
   - component: {fileID: 3480071951099237169}
+  - component: {fileID: 5442651068270802988}
+  - component: {fileID: 7198840464658829729}
+  - component: {fileID: -8473407875392342992}
+  - component: {fileID: -1406058436311379428}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -138,7 +140,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &439086234545363528
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -184,31 +186,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.4411042, y: 4.242482}
   m_EdgeRadius: 0
---- !u!114 &7198840464658829729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837171349601103321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0123cb2e054ea459a5e59b0ab990dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playerSpeed: 10
---- !u!114 &5442651068270802988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4837171349601103321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aaea23328188e742a5daa2a55caf823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3480071951099237169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,7 +228,19 @@ MonoBehaviour:
     m_ActionId: ed2e89c7-ebe5-4e7f-a441-f144f3d7bc76
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5442651068270802988}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnPaint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: ef4d2cff-7d7e-40df-8c21-2ee559eb7eaa
     m_ActionName: Player/Paint[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -295,7 +284,19 @@ MonoBehaviour:
     m_ActionId: a1c878a4-eb6f-439c-8767-305c99051949
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5442651068270802988}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnChangeGravity
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: c47949c2-32c5-4d64-9df9-2804a0829f57
     m_ActionName: Player/ChangeGravity[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
@@ -303,6 +304,56 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5442651068270802988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aaea23328188e742a5daa2a55caf823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7198840464658829729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b0123cb2e054ea459a5e59b0ab990dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerSpeed: 10
+--- !u!114 &-8473407875392342992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a2aa81442a102409f21eb0a0d95afb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerGravitySpeed: 5
+--- !u!114 &-1406058436311379428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95afdbe22664b304e8b87e8ad43a1066, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6693112014054017346
 GameObject:
   m_ObjectHideFlags: 0
