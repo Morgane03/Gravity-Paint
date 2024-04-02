@@ -44,6 +44,15 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeGravity"",
+                    ""type"": ""Button"",
+                    ""id"": ""c47949c2-32c5-4d64-9df9-2804a0829f57"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -231,6 +240,17 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""groups"": ""XR"",
                     ""action"": ""Paint"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11f12086-aa73-4362-9318-53e23c342647"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ChangeGravity"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -820,6 +840,7 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Paint = m_Player.FindAction("Paint", throwIfNotFound: true);
+        m_Player_ChangeGravity = m_Player.FindAction("ChangeGravity", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -895,12 +916,14 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Paint;
+    private readonly InputAction m_Player_ChangeGravity;
     public struct PlayerActions
     {
         private @PlayerInputController m_Wrapper;
         public PlayerActions(@PlayerInputController wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Paint => m_Wrapper.m_Player_Paint;
+        public InputAction @ChangeGravity => m_Wrapper.m_Player_ChangeGravity;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -916,6 +939,9 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
             @Paint.started += instance.OnPaint;
             @Paint.performed += instance.OnPaint;
             @Paint.canceled += instance.OnPaint;
+            @ChangeGravity.started += instance.OnChangeGravity;
+            @ChangeGravity.performed += instance.OnChangeGravity;
+            @ChangeGravity.canceled += instance.OnChangeGravity;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -926,6 +952,9 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
             @Paint.started -= instance.OnPaint;
             @Paint.performed -= instance.OnPaint;
             @Paint.canceled -= instance.OnPaint;
+            @ChangeGravity.started -= instance.OnChangeGravity;
+            @ChangeGravity.performed -= instance.OnChangeGravity;
+            @ChangeGravity.canceled -= instance.OnChangeGravity;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1110,6 +1139,7 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
     {
         void OnMove(InputAction.CallbackContext context);
         void OnPaint(InputAction.CallbackContext context);
+        void OnChangeGravity(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

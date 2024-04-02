@@ -10,11 +10,11 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerController _playerController;
 
-    private Rigidbody _rb;
+    private Rigidbody2D _rb;
 
     public void Start()
     {
-        _rb = GetComponent<Rigidbody>();
+        _rb = GetComponent<Rigidbody2D>();
         _playerController = GetComponent<PlayerController>();
         _playerController.PlayerIsMovingEvent += MovePlayer;
     }
