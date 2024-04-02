@@ -10,14 +10,14 @@ public class PlayerHealth : MonoBehaviour
 
     private PlayerController _playerController;
 
-    [SerializeField]
-    private int _maxHealth = 100;
+    public int MaxHealth = 100;
     private int _currentHealth;
 
     // Start is called before the first frame update
     void Start()
     {
-        _currentHealth = _maxHealth;
+        _currentHealth = MaxHealth;
+        PlayerHealthChangedEvent?.Invoke(_currentHealth);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -37,5 +37,19 @@ public class PlayerHealth : MonoBehaviour
     private void OnPlayerIsDead()
     {
         PlayerIsDeadEvent?.Invoke();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _currentHealth -= 10;
+            PlayerHealthChangedEvent?.Invoke(_currentHealth);
+
+            if (_currentHealth <= 0)
+            {
+                OnPlayerIsDead();
+            }
+        }
     }
 }

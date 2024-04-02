@@ -1,20 +1,41 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
     private PlayerHealth _playerHealth;
 
+    [SerializeField]
+    private Slider _healthSlider;
+
+    [SerializeField]
+    private int _updateDuration = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         _playerHealth = GetComponent<PlayerHealth>();
+        _healthSlider.maxValue = _playerHealth.MaxHealth;
         _playerHealth.PlayerHealthChangedEvent += UpdateHealthUI;
     }
 
     public void UpdateHealthUI(int health)
     {
         Debug.Log("Health: " + health);
+        StartCoroutine(UpdateHealthSlider(health, _updateDuration));
+    }
+
+    private IEnumerator UpdateHealthSlider(int health, int duration)
+    {
+        float startFillAmount = _healthSlider.value;
+        float timer = 0;
+
+        while (timer < duration)
+        {
+            timer += Time.deltaTime;
+            _healthSlider.value = Mathf.Lerp(startFillAmount, health, timer / duration);
+            yield return null;
+        }
     }
 }
