@@ -57,6 +57,12 @@ public class EnnemiMove : MonoBehaviour
             }
         }
 
+        else if (Vector2.Distance(transform.position, _waypointTarget.position) < 1f)
+        {
+            _targetNumber = (_targetNumber + 1) % _waypointsList.Count;
+            _waypointTarget = _waypointsList[_targetNumber];
+        }
+
         else if (Vector2.Distance(transform.position, Player.transform.position) > _distanceToFollowPlayer)
         {
             _ennemiAttack.InAttack = false;
@@ -66,13 +72,6 @@ public class EnnemiMove : MonoBehaviour
                 _waypointTarget = _waypointsList[_targetNumber];
             }
         }
-
-        else if (Vector2.Distance(transform.position, _waypointTarget.position) < 1f)
-        {
-            _targetNumber = (_targetNumber + 1) % _waypointsList.Count;
-            _waypointTarget = _waypointsList[_targetNumber];
-        }
-
         if (_ennemiDirection.x < 0)
         {
             _spriteRenderer.flipX = true;
