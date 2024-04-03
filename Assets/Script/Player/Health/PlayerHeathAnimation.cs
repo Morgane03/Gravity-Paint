@@ -6,6 +6,9 @@ public class PlayerHeathAnimation : MonoBehaviour
     private PlayerHealth _playerHealth;
     private Animator _animator;
 
+    [SerializeField]
+    private ParticleSystem _particleSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,8 @@ public class PlayerHeathAnimation : MonoBehaviour
     public void DeathAnimation()
     {
         _animator.SetBool("IsDead", true);
+        Instantiate(_particleSystem, transform.position, Quaternion.Euler(-90, 0, 0));
+        _particleSystem.Play();
     }
 
     private IEnumerator ResetHurtAnimation()
