@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
     public event Action<Vector2> PlayerChangeOrientationEvent;
 
     public Vector2 DirectionPlayer { get; private set; }
-    public bool IsPainting { get; private set; }
+    public bool IsPainting;
 
     public void OnMove(InputAction.CallbackContext context)
     {

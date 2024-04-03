@@ -6,7 +6,7 @@ public class EnnemiPainted : MonoBehaviour
     public event Action EnnemiPaintedEvent;
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Sword"))
         {
             EnnemiPaintedEvent?.Invoke();
         }

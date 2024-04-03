@@ -50,7 +50,7 @@ public class EnnemiMove : MonoBehaviour
         {
             _waypointTarget = Player.transform;
 
-            if (Vector2.Distance(transform.position, Player.transform.position) < 4f)
+            if (Vector2.Distance(transform.position, Player.transform.position) < 5f)
             {
                 gameObject.transform.Translate(Vector2.zero, Space.World);
                 CanAttackEvent.Invoke();
