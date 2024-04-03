@@ -4,7 +4,8 @@ public class EnnemiAnimation : MonoBehaviour
 {
     private EnnemiPainted _ennemiPainted;
     private Animator _animator;
-    void Start()
+
+    public void Start()
     {
         _animator = GetComponent<Animator>();
         _ennemiPainted.GetComponent<EnnemiPainted>();
@@ -14,5 +15,10 @@ public class EnnemiAnimation : MonoBehaviour
     public void EnnemiPaintedAnimation()
     {
         _animator.SetBool("IsPainted", true);
+    }
+
+    public void EnnemiAttackAnimation()
+    {
+        _animator.SetBool("Attack", true) ;
     }
 }
