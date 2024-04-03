@@ -1,10 +1,10 @@
 using DG.Tweening;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthUI : MonoBehaviour
 {
+    [SerializeField]
     private PlayerHealth _playerHealth;
 
     [SerializeField]
@@ -22,7 +22,6 @@ public class HealthUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerHealth = GetComponent<PlayerHealth>();
         _healthSlider.maxValue = _playerHealth.MaxHealth;
         _backHealthSlider.maxValue = _playerHealth.MaxHealth;
         _playerHealth.PlayerHealthChangedEvent += UpdateHealthUI;
@@ -30,27 +29,12 @@ public class HealthUI : MonoBehaviour
 
     public void UpdateHealthUI(int health)
     {
-        //StartCoroutine(UpdateHealthSlider(health, _updateDuration));
         float startFillAmount = _healthSlider.value;
-        float targetFillAmount = Mathf.Lerp(startFillAmount, health, _updateDuration); //Mathf.InverseLerp(0, _playerHealth.MaxHealth, health);
-
+        float targetFillAmount = Mathf.Lerp(startFillAmount, health, _updateDuration);
 
         DOTween.Sequence()
             .Append(_healthSlider.DOValue(targetFillAmount, _updateDuration / 2f).SetEase(_updateCurve))
             .AppendInterval(0.5f)
             .Append(_backHealthSlider.DOValue(targetFillAmount, _updateDuration / 2f).SetEase(_updateCurve));
     }
-
-    //private IEnumerator UpdateHealthSlider(int health, int duration)
-    //{
-    //    float startFillAmount = _healthSlider.value;
-    //    float timer = 0;
-
-    //    while (timer < duration)
-    //    {
-    //        timer += Time.deltaTime;
-    //        _healthSlider.value = Mathf.Lerp(startFillAmount, health, _updateCurve.Evaluate(timer / duration));
-    //        yield return null;
-    //    }
-    //}
 }
