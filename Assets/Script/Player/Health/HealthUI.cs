@@ -19,8 +19,7 @@ public class HealthUI : MonoBehaviour
     [SerializeField]
     private AnimationCurve _updateCurve;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         _healthSlider.maxValue = _playerHealth.MaxHealth;
         _backHealthSlider.maxValue = _playerHealth.MaxHealth;
@@ -29,6 +28,7 @@ public class HealthUI : MonoBehaviour
 
     public void UpdateHealthUI(int health)
     {
+        Debug.Log("UpdateHealthUI: " + health);
         float startFillAmount = _healthSlider.value;
         float targetFillAmount = Mathf.Lerp(startFillAmount, health, _updateDuration);
 

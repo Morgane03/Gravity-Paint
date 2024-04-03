@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
     public event Action PlayerIsDeadEvent;
     public event Action<int> PlayerHealthChangedEvent;
 
-    private PlayerController PlayerController { get { return GetComponent<PlayerController>(); } set { } }
+    private PlayerController PlayerController;
 
     public int MaxHealth = 100;
     private int _currentHealth;
@@ -14,6 +14,7 @@ public class PlayerHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        PlayerController = GetComponent<PlayerController>();
         _currentHealth = MaxHealth;
         PlayerHealthChangedEvent?.Invoke(_currentHealth);
     }
@@ -37,17 +38,17 @@ public class PlayerHealth : MonoBehaviour
         PlayerIsDeadEvent?.Invoke();
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        _currentHealth -= 10;
-    //        PlayerHealthChangedEvent?.Invoke(_currentHealth);
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _currentHealth -= 10;
+            PlayerHealthChangedEvent?.Invoke(_currentHealth);
 
-    //        if (_currentHealth <= 0)
-    //        {
-    //            OnPlayerIsDead();
-    //        }
-    //    }
-    //}
+            if (_currentHealth <= 0)
+            {
+                OnPlayerIsDead();
+            }
+        }
+    }
 }
