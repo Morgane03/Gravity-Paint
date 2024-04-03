@@ -16,6 +16,7 @@ public class PlayerPaint : MonoBehaviour
 
     public void Paint()
     {
+        _playerController.IsPainting = true;
         _animator.SetBool("Paint", true);
         StartCoroutine(StopPaint());
     }
@@ -24,5 +25,6 @@ public class PlayerPaint : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         _animator.SetBool("Paint", false);
+        _playerController.IsPainting = false;
     }
 }
