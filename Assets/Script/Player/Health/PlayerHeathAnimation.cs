@@ -26,6 +26,7 @@ public class PlayerHeathAnimation : MonoBehaviour
     {
         if(health < _playerHealth.MaxHealth)
         {
+            Debug.Log("Hurt");
             _animator.SetBool("IsHurt", true);
             StartCoroutine(ResetHurtAnimation());
         }
