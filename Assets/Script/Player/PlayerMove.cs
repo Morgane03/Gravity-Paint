@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -9,8 +10,9 @@ public class PlayerMove : MonoBehaviour
     private int _playerSpeed;
 
     private PlayerController _playerController;
-
     private Rigidbody2D _rb;
+
+    public event Action<Vector2> PlayerWalkAnimationEvent;
 
     public void Start()
     {
@@ -22,5 +24,6 @@ public class PlayerMove : MonoBehaviour
     public void MovePlayer()
     {
         _rb.velocity = _playerController.DirectionPlayer * _playerSpeed;
+        PlayerWalkAnimationEvent?.Invoke(_playerController.DirectionPlayer);
     }
 }
