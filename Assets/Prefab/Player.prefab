@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 801212860894108333}
   - component: {fileID: 439086234545363528}
   - component: {fileID: 3480071951099237169}
+  - component: {fileID: 7558813054079640878}
   - component: {fileID: 5442651068270802988}
   - component: {fileID: 7198840464658829729}
   - component: {fileID: -8473407875392342992}
@@ -53,6 +54,7 @@ GameObject:
   - component: {fileID: 3391916428143242708}
   - component: {fileID: 4265716930670854123}
   - component: {fileID: 5629791674686193218}
+  - component: {fileID: 5526134339014559818}
   - component: {fileID: 2113913250324815803}
   m_Layer: 0
   m_Name: Player
@@ -358,6 +360,25 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7558813054079640878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e51626fa94923d4418dad4e278ba373c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerChangeGravity: {fileID: -8473407875392342992}
+  playerAnimation: {fileID: 4265716930670854123}
+  playerController: {fileID: 5442651068270802988}
+  playerHealth: {fileID: 4490620204372688665}
+  playerHeathAnimation: {fileID: 3391916428143242708}
+  playerPaint: {fileID: -1406058436311379428}
+  playerMove: {fileID: 7198840464658829729}
 --- !u!114 &5442651068270802988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -448,6 +469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20eb1c1f9f55a074ca985321edb10a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 0}
 --- !u!114 &5629791674686193218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +483,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _jumpForce: {x: 0, y: 50}
+--- !u!114 &5526134339014559818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55aa399b7ba59b841b5e95aa1bee4626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerChangeGravity: {fileID: -8473407875392342992}
+  _gravityParticleSystem: {fileID: 0}
+  _flipParticleSystem: {fileID: 0}
+  _player: {fileID: 4837171349601103321}
 --- !u!96 &2113913250324815803
 TrailRenderer:
   serializedVersion: 3
