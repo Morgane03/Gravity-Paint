@@ -29,6 +29,7 @@ public class EnnemiAnimation : MonoBehaviour
         _animator.SetBool("Attack", false);
         _animator.SetBool("Walk", false);
         _particles.Play();
+        SoundManager.Instance.GlitterEffect();
 
         StartCoroutine(WaitChangeAnimation());
     }
