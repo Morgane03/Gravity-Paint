@@ -44,15 +44,12 @@ public class EnnemiMove : MonoBehaviour
 
         if (Vector2.Distance(transform.position, Player.transform.position) < _distanceToFollowPlayer)
         {
-            if (transform.position.y == Player.transform.position.y)
-            {
-                _waypointTarget = Player.transform;
+            _waypointTarget = Player.transform;
 
-                if (Vector2.Distance(transform.position, Player.transform.position) < 5f)
-                {
-                    gameObject.transform.Translate(Vector2.zero, Space.World);
-                    CanAttackEvent.Invoke();
-                }
+            if (Vector2.Distance(transform.position, Player.transform.position) < 5f)
+            {
+                gameObject.transform.Translate(Vector2.zero, Space.World);
+                CanAttackEvent.Invoke();
             }
         }
 

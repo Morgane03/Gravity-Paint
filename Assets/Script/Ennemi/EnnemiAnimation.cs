@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class EnnemiAnimation : MonoBehaviour
 {
@@ -7,8 +8,12 @@ public class EnnemiAnimation : MonoBehaviour
     private EnnemiMove _ennemiMove;
     private Animator _animator;
 
+    [SerializeField] private ParticleSystem _particles;
+
+
     public void Start()
     {
+        _particles.Stop();
         _animator = GetComponent<Animator>();
         _ennemiPainted = GetComponent<EnnemiPainted>();
         _ennemiMove = GetComponent<EnnemiMove>();
@@ -23,6 +28,7 @@ public class EnnemiAnimation : MonoBehaviour
         _animator.SetBool("IsPainted", true);
         _animator.SetBool("Attack", false);
         _animator.SetBool("Walk", false);
+        _particles.Play();
     }
 
     public void EnnemiAttackAnimation()
