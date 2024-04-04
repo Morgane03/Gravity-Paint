@@ -1,26 +1,20 @@
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.ParticleSystem;
 
 public class EnnemiAnimation : MonoBehaviour
 {
-    private EnnemiPainted _ennemiPainted;
-    private EnnemiMove _ennemiMove;
     private Animator _animator;
 
     [SerializeField] private ParticleSystem _particles;
-
 
     public void Start()
     {
         _particles.Stop();
         _animator = GetComponent<Animator>();
-        _ennemiPainted = GetComponent<EnnemiPainted>();
-        _ennemiMove = GetComponent<EnnemiMove>();
 
-        _ennemiPainted.EnnemiPaintedEvent += EnnemiPaintedAnimation;
-        _ennemiMove.EnnemiWalkEvent += EnnemiWalkAnimation;
-        _ennemiMove.CanAttackEvent += EnnemiAttackAnimation;
+        EnnemiMain.Instance.EnnemiPainted.EnnemiPaintedEvent += EnnemiPaintedAnimation;
+        EnnemiMain.Instance.EnnemiMove.EnnemiWalkEvent += EnnemiWalkAnimation;
+        EnnemiMain.Instance.EnnemiMove.CanAttackEvent += EnnemiAttackAnimation;
     }
 
     public void EnnemiPaintedAnimation()
@@ -29,6 +23,8 @@ public class EnnemiAnimation : MonoBehaviour
         _animator.SetBool("Attack", false);
         _animator.SetBool("Walk", false);
         _particles.Play();
+
+        StartCoroutine(WaitChangeAnimation());
     }
 
     public void EnnemiAttackAnimation()
@@ -41,5 +37,11 @@ public class EnnemiAnimation : MonoBehaviour
     {
         _animator.SetBool("Attack", false);
         _animator.SetBool("Walk", true);
+    }
+
+    IEnumerator WaitChangeAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+        _animator.SetBool("IsPainted", false);
     }
 }

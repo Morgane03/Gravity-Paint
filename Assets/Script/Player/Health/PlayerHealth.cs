@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerTuchEvent?.Invoke();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy") && !PlayerController.IsPainting)
         {
@@ -34,7 +34,6 @@ public class PlayerHealth : MonoBehaviour
             }
         }
     }
-
     private void OnPlayerIsDead()
     {
         PlayerIsDeadEvent?.Invoke();
