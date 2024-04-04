@@ -10,7 +10,7 @@ public class PlayerHeathAnimation : MonoBehaviour
     private ParticleSystem _particleSystem;
 
     private Camera _camera;
-    private float _duration = 2f;
+    private readonly float _duration = 2f;
 
     // Start is called before the first frame update
     void Start()

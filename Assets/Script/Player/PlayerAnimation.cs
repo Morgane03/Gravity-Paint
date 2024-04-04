@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerAnimation : MonoBehaviour
 {
@@ -20,14 +19,14 @@ public class PlayerAnimation : MonoBehaviour
 
     public void WalkAnimation(Vector2 direction)
     {
-        if (direction.x > 0)
+        if (direction.x > 0 && _playerMove._canMove)
         {
             _animator.SetBool("Walk", true);
             _spriteRenderer.flipX = false;
             _particleSystem.transform.rotation = Quaternion.Euler(39.635f, -90, 90);
         }
 
-        else if (direction.x < 0)
+        else if (direction.x < 0 && _playerMove._canMove)
         {
             _animator.SetBool("Walk", true);
             _spriteRenderer.flipX = true;
