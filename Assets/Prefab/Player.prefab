@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 4490620204372688665}
   - component: {fileID: 3391916428143242708}
   - component: {fileID: 4265716930670854123}
+  - component: {fileID: 5629791674686193218}
   - component: {fileID: 2113913250324815803}
   m_Layer: 0
   m_Name: Player
@@ -336,6 +337,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c47949c2-32c5-4d64-9df9-2804a0829f57
     m_ActionName: Player/ChangeGravity[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerJump, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0916af2d-e883-44d1-81f5-6e6e46a258f4
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -431,6 +448,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20eb1c1f9f55a074ca985321edb10a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5629791674686193218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4837171349601103321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afd9edf56b8834f428e621f5f3a848ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: {x: 0, y: 50}
 --- !u!96 &2113913250324815803
 TrailRenderer:
   serializedVersion: 3
@@ -647,7 +677,7 @@ GameObject:
   - component: {fileID: 2994068440947744159}
   m_Layer: 0
   m_Name: SwordCollider
-  m_TagString: Untagged
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

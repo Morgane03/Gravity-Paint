@@ -16,7 +16,6 @@ public class EnnemiMove : MonoBehaviour
 
     [SerializeField]
     private int _ennemiSpeed;
-    private Rigidbody2D _rb;
     private Vector2 _ennemiDirection;
     private SpriteRenderer _spriteRenderer;
 
@@ -29,7 +28,6 @@ public class EnnemiMove : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _ennemiAttack = GetComponent<EnnemiAttack>();
-        _rb = GetComponent<Rigidbody2D>();
 
         _waypointTarget = _waypointsList[0];
     }
@@ -40,20 +38,21 @@ public class EnnemiMove : MonoBehaviour
         {
             EnnemiWalkEvent?.Invoke();
 
-            _ennemiDirection = _waypointTarget.position - transform.position;
+            _ennemiDirection = new Vector2(_waypointTarget.position.x - transform.position.x, 0);
             gameObject.transform.Translate(_ennemiDirection.normalized * _ennemiSpeed * Time.deltaTime, Space.World);
         }
 
-
-
         if (Vector2.Distance(transform.position, Player.transform.position) < _distanceToFollowPlayer)
         {
-            _waypointTarget = Player.transform;
-
-            if (Vector2.Distance(transform.position, Player.transform.position) < 5f)
+            if (transform.position.y == Player.transform.position.y)
             {
-                gameObject.transform.Translate(Vector2.zero, Space.World);
-                CanAttackEvent.Invoke();
+                _waypointTarget = Player.transform;
+
+                if (Vector2.Distance(transform.position, Player.transform.position) < 5f)
+                {
+                    gameObject.transform.Translate(Vector2.zero, Space.World);
+                    CanAttackEvent.Invoke();
+                }
             }
         }
 
@@ -72,6 +71,7 @@ public class EnnemiMove : MonoBehaviour
                 _waypointTarget = _waypointsList[_targetNumber];
             }
         }
+
         if (_ennemiDirection.x < 0)
         {
             _spriteRenderer.flipX = true;
