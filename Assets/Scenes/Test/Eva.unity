@@ -212,55 +212,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &168911534
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 168911535}
-  - component: {fileID: 168911536}
-  m_Layer: 0
-  m_Name: EnnemiMain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &168911535
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168911534}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1007220928}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &168911536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 168911534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1347a36250fcc3498f7403cc15189bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsPainted: 0
-  EnnemiAnimation: {fileID: 1313007527}
-  EnnemiMove: {fileID: 1313007525}
-  EnnemiAttack: {fileID: 1313007523}
-  EnnemiPainted: {fileID: 1313007524}
 --- !u!1 &257334260
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,38 +1522,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945796900}
   m_CullTransparentMesh: 1
---- !u!1 &1007220927
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1007220928}
-  m_Layer: 0
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1007220928
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007220927}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.883341, y: 3.2975042, z: -1.069127}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 168911535}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1026952377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6735,9 +6654,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1313007521}
   - component: {fileID: 1313007520}
-  - component: {fileID: 1313007527}
   - component: {fileID: 1313007525}
   - component: {fileID: 1313007524}
+  - component: {fileID: 1313007527}
   - component: {fileID: 1313007523}
   - component: {fileID: 1313007519}
   - component: {fileID: 1313007526}
@@ -6864,6 +6783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767efc2d40b6c2241a28850fc9db334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPainted: 0
 --- !u!114 &1313007525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7558,7 +7478,8 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7558813054079640878, guid: 9e1bc9e956bb7de4a84a5b017679e3a8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -7634,4 +7555,3 @@ SceneRoots:
   - {fileID: 1355772520}
   - {fileID: 827731337}
   - {fileID: 701065105}
-  - {fileID: 1007220928}

@@ -37,7 +37,7 @@ public class EnnemiMove : MonoBehaviour
     {
         if (!_ennemiPainted.IsPainted)
         {
-            if (_ennemiAttack.InAttack)
+            if (!_ennemiAttack.InAttack)
             {
                 EnnemiWalkEvent?.Invoke();
 

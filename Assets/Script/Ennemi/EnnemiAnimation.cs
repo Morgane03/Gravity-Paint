@@ -15,9 +15,12 @@ public class EnnemiAnimation : MonoBehaviour
         _particles.Stop();
         _animator = GetComponent<Animator>();
 
-        _ennemiPainted.EnnemiPaintedEvent += EnnemiPaintedAnimation;
+        _ennemiPainted = GetComponent<EnnemiPainted>();
+        _ennemiMove = GetComponent<EnnemiMove>();
+
         _ennemiMove.EnnemiWalkEvent += EnnemiWalkAnimation;
         _ennemiMove.CanAttackEvent += EnnemiAttackAnimation;
+        _ennemiPainted.EnnemiPaintedEvent += EnnemiPaintedAnimation;
     }
 
     public void EnnemiPaintedAnimation()
