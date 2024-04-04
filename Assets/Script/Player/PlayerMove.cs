@@ -25,26 +25,24 @@ public class PlayerMove : MonoBehaviour
 
     public void MovePlayer()
     {
-        if (_canMove)
-        {
-            _rb.velocity = _playerController.DirectionPlayer * _playerSpeed;
-            PlayerWalkAnimationEvent?.Invoke(_playerController.DirectionPlayer);
-        }
+        _rb.velocity = _playerController.DirectionPlayer * _playerSpeed;
+        PlayerWalkAnimationEvent?.Invoke(_playerController.DirectionPlayer);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            _canMove = true;
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Floor"))
+    //    {
+    //        _canMove = true;
+    //    }
+    //}
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Floor"))
-        {
-            _canMove = false;
-        }
-    }   
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Floor"))
+    //    {
+    //        _rb.velocity = _playerController.DirectionPlayer * 0;
+    //        _canMove = false;
+    //    }
+    //}
 }
