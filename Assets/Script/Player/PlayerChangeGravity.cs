@@ -8,6 +8,9 @@ public class PlayerChangeGravity : MonoBehaviour
     private PlayerController _playerController;
     private Rigidbody2D _rb;
 
+    [SerializeField]
+    private int _baseGravity;
+
     public void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -17,13 +20,13 @@ public class PlayerChangeGravity : MonoBehaviour
 
     public void ChangeGravity()
     {
-        if (_rb.gravityScale == 1)
+        if (_rb.gravityScale >= 1)
         {
             _rb.gravityScale *= -1 * _playerGravitySpeed * Time.deltaTime;
         }
         else
         {
-            _rb.gravityScale = 1;
+            _rb.gravityScale = _baseGravity;
         }
     }
 }
