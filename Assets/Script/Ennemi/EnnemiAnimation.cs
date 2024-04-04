@@ -7,14 +7,17 @@ public class EnnemiAnimation : MonoBehaviour
 
     [SerializeField] private ParticleSystem _particles;
 
+    private EnnemiPainted _ennemiPainted;
+    private EnnemiMove _ennemiMove;
+
     public void Start()
     {
         _particles.Stop();
         _animator = GetComponent<Animator>();
 
-        EnnemiMain.Instance.EnnemiPainted.EnnemiPaintedEvent += EnnemiPaintedAnimation;
-        EnnemiMain.Instance.EnnemiMove.EnnemiWalkEvent += EnnemiWalkAnimation;
-        EnnemiMain.Instance.EnnemiMove.CanAttackEvent += EnnemiAttackAnimation;
+        _ennemiPainted.EnnemiPaintedEvent += EnnemiPaintedAnimation;
+        _ennemiMove.EnnemiWalkEvent += EnnemiWalkAnimation;
+        _ennemiMove.CanAttackEvent += EnnemiAttackAnimation;
     }
 
     public void EnnemiPaintedAnimation()
