@@ -21,18 +21,23 @@ public class EnnemiMove : MonoBehaviour
     public event Action CanAttackEvent;
     public event Action EnnemiWalkEvent;
 
+    private EnnemiPainted _ennemiPainted;
+    private EnnemiAttack _ennemiAttack;
+
     void Start()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _ennemiPainted = GetComponent<EnnemiPainted>();
+        _ennemiAttack = GetComponent<EnnemiAttack>();
 
         _waypointTarget = _waypointsList[0];
     }
 
     public void Update()
     {
-        if (!EnnemiMain.Instance.IsPainted)
+        if (!_ennemiPainted.IsPainted)
         {
-            if (!EnnemiMain.Instance.EnnemiAttack.InAttack)
+            if (_ennemiAttack.InAttack)
             {
                 EnnemiWalkEvent?.Invoke();
 
@@ -59,7 +64,7 @@ public class EnnemiMove : MonoBehaviour
 
             else if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) > _distanceToFollowPlayer)
             {
-                EnnemiMain.Instance.EnnemiAttack.InAttack = false;
+                _ennemiAttack.InAttack = false;
 
                 if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) > _distanceToFollowPlayer * 2)
                 {

@@ -4,12 +4,14 @@ using UnityEngine;
 public class EnnemiPainted : MonoBehaviour
 {
     public event Action EnnemiPaintedEvent;
+    public bool IsPainted;
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if(collision.gameObject.CompareTag("Sword") && !EnnemiMain.Instance.IsPainted)
+        if(collision.gameObject.CompareTag("Sword") && IsPainted)
         {
-            EnnemiMain.Instance.IsPainted = true;
+            IsPainted = true;
             EnnemiPaintedEvent?.Invoke();
         }
     }
