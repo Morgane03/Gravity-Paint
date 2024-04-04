@@ -7,7 +7,10 @@ public class ChangeGravityParticle : MonoBehaviour
     private PlayerChangeGravity _playerChangeGravity;
 
     [SerializeField]
-    private ParticleSystem _particleSystem;
+    private ParticleSystem _gravityParticleSystem;
+
+    [SerializeField]
+    private ParticleSystem _flipParticleSystem;
 
     [SerializeField]
     private GameObject _player;
@@ -15,20 +18,30 @@ public class ChangeGravityParticle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _particleSystem.Stop();
+        _gravityParticleSystem.Stop();
+        _flipParticleSystem.Stop();
         _playerChangeGravity.PlayerChangeGravityUp += GravityParticule;
+        _playerChangeGravity.PlayerChangeGravityDown += StopGravityParticle;
     }
 
     public void GravityParticule()
     {
-        //Instantiate(_particleSystem, _player.transform.position, Quaternion.Euler(-90, 0, 0));
-        _particleSystem.transform.position = new Vector3(_player.transform.position.x - 0.8f, _player.transform.position.y -6.29f, 0);
-        _particleSystem.Play();
-        // trouver quand arreter particule bool
+        _flipParticleSystem.Stop();
+        FlipPlayer();
+        _gravityParticleSystem.transform.position = new Vector3(_player.transform.position.x - 0.8f, _player.transform.position.y -6.29f, 0);
+        _gravityParticleSystem.Play();
     }
 
     private void StopGravityParticle()
     {
-        _particleSystem.Stop();
+        _flipParticleSystem.Stop();
+        FlipPlayer();
+        _gravityParticleSystem.Stop();
+    }
+
+    private void FlipPlayer()
+    {
+        _flipParticleSystem.Play();
+        _flipParticleSystem.transform.position = new Vector3(_player.transform.position.x, _player.transform.position.y, 0);
     }
 }

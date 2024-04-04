@@ -4,12 +4,14 @@ using UnityEngine;
 public class PlayerChangeGravity : MonoBehaviour
 {
     public event Action PlayerChangeGravityUp;
+    public event Action PlayerChangeGravityDown;
 
     [SerializeField]
     private int _playerGravitySpeed;
 
     private PlayerController _playerController;
     private Rigidbody2D _rb;
+    private SpriteRenderer _spriteRenderer;
 
     [SerializeField]
     private int _baseGravity;
@@ -18,6 +20,7 @@ public class PlayerChangeGravity : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _playerController = GetComponent<PlayerController>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _playerController.PlayerIsChangingGravityEvent += ChangeGravity;
     }
 
@@ -27,10 +30,13 @@ public class PlayerChangeGravity : MonoBehaviour
         {
             PlayerChangeGravityUp?.Invoke();
             _rb.gravityScale *= -1 * _playerGravitySpeed * Time.deltaTime;
+            _spriteRenderer.flipY = true;
         }
         else
         {
+            PlayerChangeGravityDown?.Invoke();
             _rb.gravityScale = _baseGravity;
+            _spriteRenderer.flipY = false;
         }
     }
 }
