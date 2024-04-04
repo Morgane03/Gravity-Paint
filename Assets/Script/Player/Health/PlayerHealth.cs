@@ -5,6 +5,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public event Action PlayerIsDeadEvent;
     public event Action<int> PlayerHealthChangedEvent;
+    public event Action PlayerTuchEvent;
 
     private PlayerController PlayerController;
 
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         PlayerController = GetComponent<PlayerController>();
         _currentHealth = MaxHealth;
         PlayerHealthChangedEvent?.Invoke(_currentHealth);
+        PlayerTuchEvent?.Invoke();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

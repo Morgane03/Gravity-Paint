@@ -1,7 +1,10 @@
+using System;
 using UnityEngine;
 
 public class PlayerChangeGravity : MonoBehaviour
 {
+    public event Action PlayerChangeGravityUp;
+
     [SerializeField]
     private int _playerGravitySpeed;
 
@@ -22,6 +25,7 @@ public class PlayerChangeGravity : MonoBehaviour
     {
         if (_rb.gravityScale >= 1)
         {
+            PlayerChangeGravityUp?.Invoke();
             _rb.gravityScale *= -1 * _playerGravitySpeed * Time.deltaTime;
         }
         else
