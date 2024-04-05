@@ -13,14 +13,9 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    [SerializeField] private AudioSource _glitterEffects;
     [SerializeField] private AudioSource _footStepsPlayer;
     [SerializeField] private AudioSource _frogCroaking;
-
-    public void GlitterEffect()
-    {
-        _glitterEffects.Play();
-    }
+    [SerializeField] private AudioSource _glitterEffects;
 
     public void FootStepsPlayer()
     {
@@ -30,6 +25,11 @@ public class SoundManager : MonoBehaviour
     public void StopFootStepsPlayer()
     {
         _footStepsPlayer.Stop();
+    }
+
+    public void GlitterEffect()
+    {
+        _glitterEffects.Play();
     }
 
     public void FrogCroaking()
