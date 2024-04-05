@@ -15,6 +15,7 @@ public class EnnemiAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && !_ennemiPainted.IsPainted)
         {
             InAttack = true;
+            SoundManager.Instance.FrogAttack();
         }
     }
 }

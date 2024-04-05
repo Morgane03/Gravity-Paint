@@ -45,8 +45,6 @@ public class EnnemiMove : MonoBehaviour
         {
             if (!_ennemiAttack.InAttack)
             {
-                SoundManager.Instance.StopFrogAttack();
-                SoundManager.Instance.FrogFootSteps();
                 EnnemiWalkEvent?.Invoke();
 
                 _ennemiDirection = new Vector2(_waypointTarget.position.x - transform.position.x, 0);
@@ -59,10 +57,8 @@ public class EnnemiMove : MonoBehaviour
                 {
                     _waypointTarget = SpawnPointPlayer.transform;
 
-                    if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < 5f)
+                    if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < 3f)
                     {
-                        SoundManager.Instance.StopFrogFootSteps();
-                        SoundManager.Instance.FrogAttack();
                         gameObject.transform.Translate(Vector2.zero, Space.World);
                         CanAttackEvent.Invoke();
                     }
@@ -73,6 +69,7 @@ public class EnnemiMove : MonoBehaviour
             {
                 _targetNumber = (_targetNumber + 1) % _waypointsList.Count;
                 _waypointTarget = _waypointsList[_targetNumber];
+                SoundManager.Instance.StopFrogAttack();
             }
 
             else if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) > _distanceToFollowPlayer)

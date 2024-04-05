@@ -21,6 +21,12 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
         DirectionPlayer = context.ReadValue<Vector2>();
         PlayerIsMovingEvent?.Invoke();
         PlayerChangeOrientationEvent?.Invoke(DirectionPlayer);
+        SoundManager.Instance.FootStepsPlayer();
+
+        if (context.canceled)
+        {
+            SoundManager.Instance.StopFootStepsPlayer();
+        }
     }
 
     public void OnPaint(InputAction.CallbackContext context)
@@ -28,12 +34,8 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
         if (context.started)
         {
             PlayerIsPaintingEvent?.Invoke();
-            SoundManager.Instance.FootStepsPlayer();
         }
-        if(context.canceled)
-        {
-            SoundManager.Instance.StopFootStepsPlayer();
-        }
+        
     }
 
     public void OnChangeGravity(InputAction.CallbackContext context)
