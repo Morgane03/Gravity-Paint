@@ -53,20 +53,18 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MoveGamepad"",
+                    ""type"": ""Button"",
+                    ""id"": ""d3e2f8bc-79cc-4c29-bc65-29fa87ae5997"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""978bfe49-cc26-4a3d-ab7b-7d7a29327403"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
                 {
                     ""name"": ""WASD"",
                     ""id"": ""00ca640b-d935-4593-8157-c05846ea39b3"",
@@ -121,28 +119,6 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1635d3fe-58b6-4ba9-a4e2-f4b964f6b5c8"",
-                    ""path"": ""<XRController>/{Primary2DAxis}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3ea4d645-4504-4529-b061-ab81934c3752"",
-                    ""path"": ""<Joystick>/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
@@ -207,6 +183,50 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ChangeGravity"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""be4c847d-4676-43e2-84e4-c259a97f82df"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""MoveGamepad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c8ce6ce-770b-4cc3-b72c-65b966228510"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Joystick"",
+                    ""action"": ""MoveGamepad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8fc11972-626d-43a3-b7c1-ff43d93c6ae0"",
+                    ""path"": ""<XInputController>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick;Gamepad"",
+                    ""action"": ""MoveGamepad"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f8c29a51-780a-4faa-8d3f-8fecb6fb46e9"",
+                    ""path"": ""<XInputController>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick;Gamepad"",
+                    ""action"": ""MoveGamepad"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -797,6 +817,7 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Paint = m_Player.FindAction("Paint", throwIfNotFound: true);
         m_Player_ChangeGravity = m_Player.FindAction("ChangeGravity", throwIfNotFound: true);
+        m_Player_MoveGamepad = m_Player.FindAction("MoveGamepad", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -873,6 +894,7 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Paint;
     private readonly InputAction m_Player_ChangeGravity;
+    private readonly InputAction m_Player_MoveGamepad;
     public struct PlayerActions
     {
         private @PlayerInputController m_Wrapper;
@@ -880,6 +902,7 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Paint => m_Wrapper.m_Player_Paint;
         public InputAction @ChangeGravity => m_Wrapper.m_Player_ChangeGravity;
+        public InputAction @MoveGamepad => m_Wrapper.m_Player_MoveGamepad;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -898,6 +921,9 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
             @ChangeGravity.started += instance.OnChangeGravity;
             @ChangeGravity.performed += instance.OnChangeGravity;
             @ChangeGravity.canceled += instance.OnChangeGravity;
+            @MoveGamepad.started += instance.OnMoveGamepad;
+            @MoveGamepad.performed += instance.OnMoveGamepad;
+            @MoveGamepad.canceled += instance.OnMoveGamepad;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -911,6 +937,9 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
             @ChangeGravity.started -= instance.OnChangeGravity;
             @ChangeGravity.performed -= instance.OnChangeGravity;
             @ChangeGravity.canceled -= instance.OnChangeGravity;
+            @MoveGamepad.started -= instance.OnMoveGamepad;
+            @MoveGamepad.performed -= instance.OnMoveGamepad;
+            @MoveGamepad.canceled -= instance.OnMoveGamepad;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1096,6 +1125,7 @@ public partial class @PlayerInputController: IInputActionCollection2, IDisposabl
         void OnMove(InputAction.CallbackContext context);
         void OnPaint(InputAction.CallbackContext context);
         void OnChangeGravity(InputAction.CallbackContext context);
+        void OnMoveGamepad(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
