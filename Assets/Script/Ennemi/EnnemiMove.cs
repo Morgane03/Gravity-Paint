@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EnnemiMove : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class EnnemiMove : MonoBehaviour
     private Vector2 _ennemiDirection;
     private SpriteRenderer _spriteRenderer;
 
+    private GameObject _exclamationPoint;
+
     public event Action CanAttackEvent;
     public event Action EnnemiWalkEvent;
 
@@ -26,6 +29,7 @@ public class EnnemiMove : MonoBehaviour
 
     void Start()
     {
+        _exclamationPoint = transform.GetChild(0).gameObject;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _ennemiPainted = GetComponent<EnnemiPainted>();
         _ennemiAttack = GetComponent<EnnemiAttack>();
@@ -34,7 +38,7 @@ public class EnnemiMove : MonoBehaviour
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             _waypointTarget = _waypointsList[_targetNumber];
         }
@@ -55,6 +59,7 @@ public class EnnemiMove : MonoBehaviour
             {
                 if (Vector2.Distance(new Vector2(0, transform.position.y), new Vector2(0, SpawnPointPlayer.transform.position.y)) < 1f)
                 {
+                    StartCoroutine(ShowExclamationPoint());
                     _waypointTarget = SpawnPointPlayer.transform;
 
                     if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < 3f)
@@ -91,5 +96,12 @@ public class EnnemiMove : MonoBehaviour
                 _spriteRenderer.flipX = false;
             }
         }
+    }
+
+    IEnumerator ShowExclamationPoint()
+    {
+        _exclamationPoint.SetActive(true);
+        yield return new WaitForSeconds(2);
+        _exclamationPoint.SetActive(false);
     }
 }
