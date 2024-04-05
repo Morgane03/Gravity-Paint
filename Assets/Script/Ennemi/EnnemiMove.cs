@@ -45,14 +45,19 @@ public class EnnemiMove : MonoBehaviour
                 gameObject.transform.Translate(_ennemiDirection.normalized * _ennemiSpeed * Time.deltaTime, Space.World);
             }
 
+
+
             if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < _distanceToFollowPlayer)
             {
-                _waypointTarget = SpawnPointPlayer.transform;
-
-                if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < 5f)
+                if (Vector2.Distance(new Vector2(0, transform.position.y), new Vector2(0, SpawnPointPlayer.transform.position.y)) < 3f)
                 {
-                    gameObject.transform.Translate(Vector2.zero, Space.World);
-                    CanAttackEvent.Invoke();
+                    _waypointTarget = SpawnPointPlayer.transform;
+
+                    if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < 5f)
+                    {
+                        gameObject.transform.Translate(Vector2.zero, Space.World);
+                        CanAttackEvent.Invoke();
+                    }
                 }
             }
 
