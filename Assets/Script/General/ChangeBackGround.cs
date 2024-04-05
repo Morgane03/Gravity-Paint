@@ -1,5 +1,7 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeBackGround : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class ChangeBackGround : MonoBehaviour
 
     [SerializeField]
     private Color _color;
+    private Color _baseColor;
+
+    [SerializeField]
+    private List<Button> _buttonList;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +26,10 @@ public class ChangeBackGround : MonoBehaviour
         _baseBackGround.SetActive(true);
         _gravityBackGround.SetActive(false);
         StartCoroutine(ChangeBackground());
+        foreach (var button in _buttonList)
+        {
+            _baseColor = button.colors.normalColor;
+        }
     }
 
     private IEnumerator ChangeBackground()
@@ -35,6 +45,16 @@ public class ChangeBackGround : MonoBehaviour
     {
         _baseBackGround.SetActive(!_baseBackGround.activeSelf);
         _gravityBackGround.SetActive(!_gravityBackGround.activeSelf);
+        StartCoroutine(ChangeBackground());
+    }
+
+    public void CreditActive()
+    {
+        StopCoroutine(ChangeBackground());
+    }
+
+    public void CreditDesactive()
+    {
         StartCoroutine(ChangeBackground());
     }
 }
