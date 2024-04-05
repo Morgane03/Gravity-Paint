@@ -10,15 +10,14 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
 
     public event Action PlayerIsChangingGravityEvent;
 
-    public event Action PlayerIsJumpingEvent;
-
     public event Action<Vector2> PlayerChangeOrientationEvent;
-
+    
     public Vector2 DirectionPlayer { get; private set; }
     public bool IsPainting;
+    
 
     public void OnMove(InputAction.CallbackContext context)
-    {
+    {   
         DirectionPlayer = context.ReadValue<Vector2>();
         PlayerIsMovingEvent?.Invoke();
         PlayerChangeOrientationEvent?.Invoke(DirectionPlayer);
@@ -37,14 +36,6 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
         if (context.started)
         {
             PlayerIsChangingGravityEvent?.Invoke();
-        }
-    }
-
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        if (context.started)
-        {
-            PlayerIsJumpingEvent?.Invoke();
         }
     }
 }
