@@ -17,8 +17,22 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
     
 
     public void OnMove(InputAction.CallbackContext context)
-    {   
+    {
         DirectionPlayer = context.ReadValue<Vector2>();
+        PlayerIsMovingEvent?.Invoke();
+        PlayerChangeOrientationEvent?.Invoke(DirectionPlayer);
+        SoundManager.Instance.FootStepsPlayer();
+
+        if (context.canceled)
+        {
+            SoundManager.Instance.StopFootStepsPlayer();
+        }
+    }
+    public void OnMoveGamepad(InputAction.CallbackContext context)
+    {
+        Vector2 leftJoystickInput = Gamepad.current.leftStick.ReadValue();
+        DirectionPlayer = new Vector2(leftJoystickInput.x, 0);
+
         PlayerIsMovingEvent?.Invoke();
         PlayerChangeOrientationEvent?.Invoke(DirectionPlayer);
         SoundManager.Instance.FootStepsPlayer();
