@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHeathAnimation : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerHeathAnimation : MonoBehaviour
 
     private Camera _camera;
     private readonly float _duration = 2f;
+
+    public Animator Animator;
 
     // Start is called before the first frame update
     void Start()
@@ -60,5 +63,15 @@ public class PlayerHeathAnimation : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
+        StartCoroutine(ResetLevelDeath());
+    }
+
+    private IEnumerator ResetLevelDeath()
+    {
+        yield return new WaitForSeconds(2f);
+        Animator.SetBool("ReloadScene", true);
+        yield return new WaitForSeconds(2f);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentSceneName);
     }
 }

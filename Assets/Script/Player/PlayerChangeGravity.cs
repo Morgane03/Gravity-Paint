@@ -16,11 +16,19 @@ public class PlayerChangeGravity : MonoBehaviour
     [SerializeField]
     private int _baseGravity;
 
+    [SerializeField]
+    private GameObject _baseCanvas;
+
+    [SerializeField]
+    private GameObject _reverseCanvas;
+
     public void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _playerController = GetComponent<PlayerController>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _baseCanvas.SetActive(true);
+        _reverseCanvas.SetActive(false);
         _playerController.PlayerIsChangingGravityEvent += ChangeGravity;
     }
 
@@ -30,12 +38,16 @@ public class PlayerChangeGravity : MonoBehaviour
         {
             PlayerChangeGravityUp?.Invoke();
             _rb.gravityScale *= -1 * _playerGravitySpeed * Time.deltaTime;
+            _reverseCanvas.SetActive(true);
+            _baseCanvas.SetActive(false);
             _spriteRenderer.flipY = true;
         }
         else
         {
             PlayerChangeGravityDown?.Invoke();
             _rb.gravityScale = _baseGravity;
+            _baseCanvas.SetActive(true);
+            _reverseCanvas.SetActive(false);
             _spriteRenderer.flipY = false;
         }
     }
