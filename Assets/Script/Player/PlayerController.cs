@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour, PlayerInputController.IPlayerActi
         if (context.started)
         {
             PlayerIsPaintingEvent?.Invoke();
+            SoundManager.Instance.FootStepsPlayer();
+        }
+        if(context.canceled)
+        {
+            SoundManager.Instance.StopFootStepsPlayer();
         }
     }
 

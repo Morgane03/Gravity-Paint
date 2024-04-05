@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
@@ -26,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy") && !PlayerController.IsPainting)
         {
-            _currentHealth -= 10;
+            _currentHealth -= 5;
             PlayerHealthChangedEvent?.Invoke(_currentHealth);
 
             if (_currentHealth <= 0)

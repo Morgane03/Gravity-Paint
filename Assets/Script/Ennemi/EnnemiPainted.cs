@@ -10,6 +10,7 @@ public class EnnemiPainted : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Sword") && !IsPainted)
         {
+            SoundManager.Instance.GlitterEffect();
             IsPainted = true;
             EnnemiPaintedEvent?.Invoke();
         }
