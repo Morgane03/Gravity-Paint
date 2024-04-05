@@ -53,7 +53,7 @@ public class EnnemiMove : MonoBehaviour
 
             if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < _distanceToFollowPlayer)
             {
-                if (Vector2.Distance(new Vector2(0, transform.position.y), new Vector2(0, SpawnPointPlayer.transform.position.y)) < 3f)
+                if (Vector2.Distance(new Vector2(0, transform.position.y), new Vector2(0, SpawnPointPlayer.transform.position.y)) < 1f)
                 {
                     _waypointTarget = SpawnPointPlayer.transform;
 
