@@ -14,10 +14,6 @@ public class ChangeBackGround : MonoBehaviour
     private GameObject _gravityBackGround;
 
     [SerializeField]
-    private Color _color;
-    private Color _baseColor;
-
-    [SerializeField]
     private List<Button> _buttonList;
 
     // Start is called before the first frame update
@@ -26,10 +22,6 @@ public class ChangeBackGround : MonoBehaviour
         _baseBackGround.SetActive(true);
         _gravityBackGround.SetActive(false);
         StartCoroutine(ChangeBackground());
-        foreach (var button in _buttonList)
-        {
-            _baseColor = button.colors.normalColor;
-        }
     }
 
     private IEnumerator ChangeBackground()
