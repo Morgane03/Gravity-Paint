@@ -32,7 +32,13 @@ public class EnnemiMove : MonoBehaviour
 
         _waypointTarget = _waypointsList[0];
     }
-
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("Wall"))
+        {
+            _waypointTarget = _waypointsList[_targetNumber];
+        }
+    }
     public void Update()
     {
         if (!_ennemiPainted.IsPainted)
@@ -44,8 +50,6 @@ public class EnnemiMove : MonoBehaviour
                 _ennemiDirection = new Vector2(_waypointTarget.position.x - transform.position.x, 0);
                 gameObject.transform.Translate(_ennemiDirection.normalized * _ennemiSpeed * Time.deltaTime, Space.World);
             }
-
-
 
             if (Vector2.Distance(transform.position, SpawnPointPlayer.transform.position) < _distanceToFollowPlayer)
             {
