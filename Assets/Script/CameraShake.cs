@@ -7,12 +7,12 @@ public class CameraShake : MonoBehaviour
     private PlayerHealth _playerHealth;
 
     // For gravity change
-    public float shakeAmount = 10f;
-    public float shakeDuration = 0.2f;
+    private readonly float shakeAmount = 10f;
+    private readonly float shakeDuration = 0.2f;
 
     // For player touch
-    public float duration = 0.3f; // Durée de l'effet de shake
-    public float strength = 0.3f; // Force du shake
+    private readonly float duration = 0.3f; // Durée de l'effet de shake
+    private readonly float strength = 0.3f; // Force du shake
 
     private Vector3 originalPosition;
 
