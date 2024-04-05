@@ -34,6 +34,7 @@ public class PlayerChangeGravity : MonoBehaviour
 
     public void ChangeGravity()
     {
+        SoundManager.Instance.ChangeGravity();
         if (_rb.gravityScale >= 1)
         {
             PlayerChangeGravityUp?.Invoke();
