@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -41,17 +40,17 @@ public class PlayerHealth : MonoBehaviour
         PlayerIsDeadEvent?.Invoke();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _currentHealth -= 10;
-            PlayerHealthChangedEvent?.Invoke(_currentHealth);
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        _currentHealth -= 10;
+    //        PlayerHealthChangedEvent?.Invoke(_currentHealth);
 
-            if (_currentHealth <= 0)
-            {
-                OnPlayerIsDead();
-            }
-        }
-    }
+    //        if (_currentHealth <= 0)
+    //        {
+    //            OnPlayerIsDead();
+    //        }
+    //    }
+    //}
 }
