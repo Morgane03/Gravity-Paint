@@ -36,20 +36,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void OnPlayerIsDead()
     {
+        SoundManager.Instance.PlayerDie();
         PlayerIsDeadEvent?.Invoke();
     }
-
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        _currentHealth -= 10;
-    //        PlayerHealthChangedEvent?.Invoke(_currentHealth);
-
-    //        if (_currentHealth <= 0)
-    //        {
-    //            OnPlayerIsDead();
-    //        }
-    //    }
-    //}
 }

@@ -16,6 +16,7 @@ public class PlayerPaint : MonoBehaviour
 
     public void Paint()
     {
+        SoundManager.Instance.PaintAirEffect();
         _playerController.IsPainting = true;
         _animator.SetBool("Paint", true);
         StartCoroutine(StopPaint());
