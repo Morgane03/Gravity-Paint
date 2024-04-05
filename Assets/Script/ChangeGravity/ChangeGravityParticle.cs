@@ -14,7 +14,9 @@ public class ChangeGravityParticle : MonoBehaviour
     [SerializeField]
     private GameObject _player;
 
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject _globalVolume;
+
     void Start()
     {
         _gravityParticleSystem.Stop();
@@ -25,6 +27,7 @@ public class ChangeGravityParticle : MonoBehaviour
 
     public void GravityParticule()
     {
+        _globalVolume.SetActive(true);
         _flipParticleSystem.Stop();
         FlipPlayer();
         _gravityParticleSystem.transform.position = new Vector3(_player.transform.position.x - 0.8f, _player.transform.position.y -6.29f, 0);
@@ -36,6 +39,7 @@ public class ChangeGravityParticle : MonoBehaviour
         _flipParticleSystem.Stop();
         FlipPlayer();
         _gravityParticleSystem.Stop();
+        _globalVolume.SetActive(false);
     }
 
     private void FlipPlayer()

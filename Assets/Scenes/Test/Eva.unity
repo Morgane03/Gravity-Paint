@@ -7408,6 +7408,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8473407875392342992, guid: 9e1bc9e956bb7de4a84a5b017679e3a8, type: 3}
+      propertyPath: _baseCanvas
+      value: 
+      objectReference: {fileID: 1355772516}
+    - target: {fileID: -8473407875392342992, guid: 9e1bc9e956bb7de4a84a5b017679e3a8, type: 3}
+      propertyPath: _reverseCanvas
+      value: 
+      objectReference: {fileID: 1355772516}
+    - target: {fileID: -8473407875392342992, guid: 9e1bc9e956bb7de4a84a5b017679e3a8, type: 3}
       propertyPath: _playerGravitySpeed
       value: 12
       objectReference: {fileID: 0}
